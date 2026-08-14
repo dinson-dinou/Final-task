@@ -1,4 +1,4 @@
-/* ---------- Fonts ---------- */
+
 @font-face {
   font-family: "Ubuntu";
   src: url("./assets/fonts/Ubuntu-Regular.ttf") format("truetype");
@@ -21,7 +21,7 @@
   font-display: swap;
 }
 
-/* ---------- Design tokens ---------- */
+
 :root {
   --blue-950: hsl(213, 96%, 18%);
   --purple-600: hsl(243, 100%, 62%);
@@ -37,7 +37,7 @@
   --white: hsl(0, 100%, 100%);
 }
 
-/* ---------- Reset ---------- */
+
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
@@ -58,7 +58,7 @@ a { color: inherit; }
   border: 0;
 }
 
-/* ---------- Base ---------- */
+
 body {
   font-family: "Ubuntu", sans-serif;
   font-size: 1rem;
@@ -76,7 +76,7 @@ body {
   justify-content: center;
 }
 
-/* ---------- Card / layout ---------- */
+
 .card {
   width: 100%;
   max-width: 970px;
@@ -126,7 +126,7 @@ body {
   box-shadow: 0 25px 50px -12px rgba(2, 28, 78, 0.15);
 }
 
-/* ---------- Step content ---------- */
+
 .step__title {
   font-size: 1.65rem;
   color: var(--blue-950);
@@ -150,7 +150,7 @@ body {
 
 .step--thankyou .step__intro { margin-bottom: 0; }
 
-/* ---------- Fields (Step 1) ---------- */
+
 .field { margin-bottom: 1.25rem; }
 
 .field__row {
@@ -201,7 +201,7 @@ body {
   box-shadow: 0 0 0 3px hsla(354, 84%, 57%, 0.15);
 }
 
-/* ---------- Plans (Step 2) ---------- */
+
 .plans {
   border: none;
   display: flex;
@@ -257,7 +257,7 @@ body {
   color: var(--blue-950);
 }
 
-/* ---------- Billing toggle ---------- */
+
 .billing-toggle {
   display: flex;
   align-items: center;
@@ -304,7 +304,7 @@ body {
   outline-offset: 2px;
 }
 
-/* ---------- Add-ons (Step 3) ---------- */
+
 .addons {
   display: flex;
   flex-direction: column;
@@ -373,7 +373,7 @@ body {
   font-weight: 500;
 }
 
-/* ---------- Summary (Step 4) ---------- */
+
 .summary {
   background: var(--blue-50);
   border-radius: 0.5rem;
@@ -434,7 +434,7 @@ body {
   font-size: 1.15rem;
 }
 
-/* ---------- Nav buttons ---------- */
+
 .step-nav {
   display: flex;
   align-items: center;
@@ -473,7 +473,7 @@ body {
   outline-offset: 2px;
 }
 
-/* ---------- Attribution ---------- */
+
 .attribution {
   font-size: 0.6875rem;
   text-align: center;
@@ -481,9 +481,7 @@ body {
 }
 .attribution a { color: hsl(228, 45%, 44%); }
 
-/* ==========================================================
-   Desktop
-   ========================================================== */
+
 @media (min-width: 700px) {
   .wrapper {
     align-items: center;
