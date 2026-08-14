@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Multi-step form</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="card">
+
+      <!-- Sidebar start -->
+      <aside class="sidebar">
+        <ol class="steps" id="stepsList">
+          <li class="steps__item" data-step="1">
+            <span class="steps__number" aria-hidden="true">1</span>
+            <span class="steps__label">
+              <span class="steps__eyebrow">Step 1</span>
+              Your info
+            </span>
+          </li>
+          <li class="steps__item" data-step="2">
+            <span class="steps__number" aria-hidden="true">2</span>
+            <span class="steps__label">
+              <span class="steps__eyebrow">Step 2</span>
+              Select plan
+            </span>
+          </li>
+          <li class="steps__item" data-step="3">
+            <span class="steps__number" aria-hidden="true">3</span>
+            <span class="steps__label">
+              <span class="steps__eyebrow">Step 3</span>
+              Add-ons
+            </span>
+          </li>
+          <li class="steps__item" data-step="4">
+            <span class="steps__number" aria-hidden="true">4</span>
+            <span class="steps__label">
+              <span class="steps__eyebrow">Step 4</span>
+              Summary
+            </span>
+          </li>
+        </ol>
+      </aside>
+      <!-- Sidebar end -->
+
+      <div class="panel">
+        <form class="msform" id="msForm" novalidate>
+
+          <!-- Step 1: Personal info -->
+          <section class="step" data-step="1" aria-labelledby="step1Heading">
+            <h1 id="step1Heading" class="step__title">Personal info</h1>
+            <p class="step__intro">Please provide your name, email address, and phone number.</p>
+
+            <div class="field">
+              <div class="field__row">
+                <label for="name">Name</label>
+                <span class="field__error" id="nameError" role="alert"></span>
+              </div>
+              <input type="text" id="name" name="name" placeholder="e.g. Stephen King" autocomplete="name">
+            </div>
+
+            <div class="field">
+              <div class="field__row">
+                <label for="email">Email Address</label>
+                <span class="field__error" id="emailError" role="alert"></span>
+              </div>
+              <input type="email" id="email" name="email" placeholder="e.g. stephenking@lorem.com" autocomplete="email">
+            </div>
+
+            <div class="field">
+              <div class="field__row">
+                <label for="phone">Phone Number</label>
+                <span class="field__error" id="phoneError" role="alert"></span>
+              </div>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. +1 234 567 890" autocomplete="tel">
+            </div>
+          </section>
+
+          <!-- Step 2: Select plan -->
+          <section class="step" data-step="2" hidden aria-labelledby="step2Heading">
+            <h1 id="step2Heading" class="step__title">Select your plan</h1>
+            <p class="step__intro">You have the option of monthly or yearly billing.</p>
+
+            <fieldset class="plans">
+              <legend class="sr-only">Choose a plan</legend>
+              <span class="field__error field__error--fieldset" id="planError" role="alert"></span>
+
+              <label class="plan-card" data-plan="arcade">
+                <input type="radio" name="plan" value="arcade" class="sr-only">
+                <img src="./assets/images/icon-arcade.svg" alt="" class="plan-card__icon">
+                <span class="plan-card__name">Arcade</span>
+                <span class="plan-card__price" data-monthly="$9/mo" data-yearly="$90/yr">$9/mo</span>
+                <span class="plan-card__bonus" data-yearly-only hidden>2 months free</span>
+              </label>
+
+              <label class="plan-card" data-plan="advanced">
+                <input type="radio" name="plan" value="advanced" class="sr-only">
+                <img src="./assets/images/icon-advanced.svg" alt="" class="plan-card__icon">
+                <span class="plan-card__name">Advanced</span>
+                <span class="plan-card__price" data-monthly="$12/mo" data-yearly="$120/yr">$12/mo</span>
+                <span class="plan-card__bonus" data-yearly-only hidden>2 months free</span>
+              </label>
+
+              <label class="plan-card" data-plan="pro">
+                <input type="radio" name="plan" value="pro" class="sr-only">
+                <img src="./assets/images/icon-pro.svg" alt="" class="plan-card__icon">
+                <span class="plan-card__name">Pro</span>
+                <span class="plan-card__price" data-monthly="$15/mo" data-yearly="$150/yr">$15/mo</span>
+                <span class="plan-card__bonus" data-yearly-only hidden>2 months free</span>
+              </label>
+            </fieldset>
+
+            <div class="billing-toggle">
+              <span class="billing-toggle__label is-active" data-billing-label="monthly">Monthly</span>
+              <button type="button" class="switch" id="billingSwitch" role="switch" aria-checked="false" aria-label="Toggle yearly billing">
+                <span class="switch__knob"></span>
+              </button>
+              <span class="billing-toggle__label" data-billing-label="yearly">Yearly</span>
+            </div>
+          </section>
+
+          <!-- Step 3: Add-ons -->
+          <section class="step" data-step="3" hidden aria-labelledby="step3Heading">
+            <h1 id="step3Heading" class="step__title">Pick add-ons</h1>
+            <p class="step__intro">Add-ons help enhance your gaming experience.</p>
+
+            <div class="addons">
+              <label class="addon-card" data-addon="online">
+                <input type="checkbox" name="addons" value="online" data-price-monthly="1" data-price-yearly="10">
+                <span class="addon-card__check" aria-hidden="true"></span>
+                <span class="addon-card__text">
+                  <span class="addon-card__name">Online service</span>
+                  <span class="addon-card__desc">Access to multiplayer games</span>
+                </span>
+                <span class="addon-card__price" data-monthly="+$1/mo" data-yearly="+$10/yr">+$1/mo</span>
+              </label>
+
+              <label class="addon-card" data-addon="storage">
+                <input type="checkbox" name="addons" value="storage" data-price-monthly="2" data-price-yearly="20">
+                <span class="addon-card__check" aria-hidden="true"></span>
+                <span class="addon-card__text">
+                  <span class="addon-card__name">Larger storage</span>
+                  <span class="addon-card__desc">Extra 1TB of cloud save</span>
+                </span>
+                <span class="addon-card__price" data-monthly="+$2/mo" data-yearly="+$20/yr">+$2/mo</span>
+              </label>
+
+              <label class="addon-card" data-addon="profile">
+                <input type="checkbox" name="addons" value="profile" data-price-monthly="2" data-price-yearly="20">
+                <span class="addon-card__check" aria-hidden="true"></span>
+                <span class="addon-card__text">
+                  <span class="addon-card__name">Customizable profile</span>
+                  <span class="addon-card__desc">Custom theme on your profile</span>
+                </span>
+                <span class="addon-card__price" data-monthly="+$2/mo" data-yearly="+$20/yr">+$2/mo</span>
+              </label>
+            </div>
+          </section>
+
+          <!-- Step 4: Summary -->
+          <section class="step" data-step="4" hidden aria-labelledby="step4Heading">
+            <h1 id="step4Heading" class="step__title">Finishing up</h1>
+            <p class="step__intro">Double-check everything looks OK before confirming.</p>
+
+            <div class="summary" id="summaryBox">
+              <div class="summary__plan">
+                <div>
+                  <p class="summary__plan-name" id="summaryPlanName">Arcade (Monthly)</p>
+                  <button type="button" class="summary__change" id="changePlanBtn">Change</button>
+                </div>
+                <p class="summary__plan-price" id="summaryPlanPrice">$9/mo</p>
+              </div>
+
+              <div class="summary__addons" id="summaryAddons"></div>
+            </div>
+
+            <div class="summary__total">
+              <span id="summaryTotalLabel">Total (per month)</span>
+              <strong id="summaryTotalPrice">+$0/mo</strong>
+            </div>
+          </section>
+
+          <!-- Shared nav for steps 1-4 -->
+          <div class="step-nav" id="stepNav">
+            <button type="button" class="btn btn--ghost" id="backBtn" hidden>Go Back</button>
+            <button type="button" class="btn btn--primary" id="nextBtn">Next Step</button>
+            <button type="submit" class="btn btn--confirm" id="confirmBtn" hidden>Confirm</button>
+          </div>
+
+        </form>
+
+        <!-- Step 5: Thank you -->
+        <section class="step step--thankyou" data-step="5" hidden aria-labelledby="step5Heading">
+          <img src="./assets/images/icon-thank-you.svg" alt="" class="thankyou__icon">
+          <h1 id="step5Heading" class="step__title">Thank you!</h1>
+          <p class="step__intro">
+            Thanks for confirming your subscription! We hope you have fun using our
+            platform. If you ever need support, please feel free to email us at
+            <a href="mailto:support@loremgaming.com">support@loremgaming.com</a>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

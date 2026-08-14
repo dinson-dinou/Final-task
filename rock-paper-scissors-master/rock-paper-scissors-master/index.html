@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock, Paper, Scissors</title>
+  <link rel="icon" href="images/favicon-32x32.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <main>
+    
+    <header class="header">
+      <img src="images/logo.svg" alt="Rock Paper Scissors" class="logo" />
+      <div class="score-box">
+        <p class="score-label">Score</p>
+        <p class="score-value" id="score">0</p>
+      </div>
+    </header>
+
+
+    <section class="game-board" id="game-board" aria-label="Choose your move">
+      <img src="images/bg-triangle.svg" alt="" class="bg-triangle" aria-hidden="true" />
+
+      <button class="choice-btn choice-paper" data-choice="paper" aria-label="Paper">
+        <img src="images/icon-paper.svg" alt="" />
+      </button>
+
+      <button class="choice-btn choice-scissors" data-choice="scissors" aria-label="Scissors">
+        <img src="images/icon-scissors.svg" alt="" />
+      </button>
+
+      <button class="choice-btn choice-rock" data-choice="rock" aria-label="Rock">
+        <img src="images/icon-rock.svg" alt="" />
+      </button>
+    </section>
+
+   
+    <section class="results-board" id="results-board" hidden>
+      <div class="results-pick player-pick">
+        <p class="pick-label">You Picked</p>
+        <div class="result-circle-wrap">
+          <div class="result-glow" id="player-glow"></div>
+          <div class="choice-btn result-circle" id="player-choice-circle">
+            <img src="" alt="" id="player-choice-icon" />
+          </div>
+        </div>
+      </div>
+
+      <div class="results-outcome">
+        <p class="outcome-text" id="outcome-text"></p>
+        <button class="play-again-btn" id="play-again-btn">Play Again</button>
+      </div>
+
+      <div class="results-pick house-pick">
+        <p class="pick-label">The House Picked</p>
+        <div class="result-circle-wrap">
+          <div class="result-glow" id="house-glow"></div>
+          <div class="choice-btn result-circle" id="house-choice-circle">
+            <img src="" alt="" id="house-choice-icon" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <button class="rules-btn" id="rules-btn">Rules</button>
+  </main>
+
+  
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h2 id="modal-title">Rules</h2>
+        <button class="modal-close" id="modal-close" aria-label="Close rules">
+          <img src="images/icon-close.svg" alt="" />
+        </button>
+      </div>
+      <img src="images/image-rules.svg" alt="Rules: Paper beats Rock, Rock beats Scissors, Scissors beats Paper" class="modal-image" />
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

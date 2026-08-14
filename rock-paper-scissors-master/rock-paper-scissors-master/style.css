@@ -1,0 +1,382 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+:root {
+  --gold-500: hsl(39, 89%, 49%);
+  --gold-600: hsl(28, 76%, 44%);
+  --blue-500: hsl(230, 89%, 62%);
+  --blue-700: hsl(229, 64%, 46%);
+  --red-600: hsl(349, 71%, 52%);
+  --red-800: hsl(347, 75%, 35%);
+
+  --navy-900: hsl(229, 25%, 31%);
+  --gray-600: hsl(246, 11%, 37%);
+
+  --bg-top: hsl(214, 47%, 23%);
+  --bg-bottom: hsl(237, 48%, 15%);
+
+  --white: hsl(0, 0%, 100%);
+}
+
+
+body {
+  min-height: 100vh;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-weight: 600;
+  background: radial-gradient(ellipse at top, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 24px 20px 40px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  max-width: 550px;
+  position: relative;
+  z-index: 1;
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid hsl(217, 16%, 45%);
+  border-radius: 12px;
+  padding: 14px 18px 14px 24px;
+  margin-bottom: 60px;
+}
+
+.logo {
+  width: 100px;
+}
+
+.score-box {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 10px 24px 12px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.score-label {
+  color: var(--blue-700);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.score-value {
+  color: var(--navy-900);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+
+.game-board {
+  position: relative;
+  width: 260px;
+  height: 240px;
+  margin: 0 auto 48px;
+}
+
+.bg-triangle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 0;
+}
+
+.choice-btn {
+  --ring-color: var(--blue-500);
+  --ring-shadow: var(--blue-700);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--ring-color);
+  box-shadow: inset 0 -8px 0 var(--ring-shadow), 0 6px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  transition: transform 0.15s ease;
+}
+
+.choice-btn::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, var(--white) 55%, hsl(0, 0%, 87%) 100%);
+}
+
+.choice-btn img {
+  position: relative;
+  z-index: 1;
+  width: 40%;
+}
+
+.choice-btn:hover,
+.choice-btn:focus-visible {
+  transform: scale(1.08);
+  outline: none;
+}
+
+.choice-paper {
+  --ring-color: var(--gold-500);
+  --ring-shadow: var(--gold-600);
+  top: 0;
+  left: 0;
+  /*top: -20px;
+  left: -30px;*/
+}
+
+.choice-scissors {
+  --ring-color: var(--gold-500);
+  --ring-shadow: var(--gold-600);
+  top: 0;
+  right: 0;
+  /*top: -10px;
+  right: -30px;*/
+}
+
+.choice-rock {
+  --ring-color: var(--blue-500);
+  --ring-shadow: var(--blue-700);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.choice-rock:hover,
+.choice-rock:focus-visible {
+  transform: translateX(-50%) scale(1.08);
+}
+
+.choice-paper { --ring-color: var(--blue-500); --ring-shadow: var(--blue-700); }
+.choice-scissors { --ring-color: var(--gold-500); --ring-shadow: var(--gold-600); }
+.choice-rock { --ring-color: var(--red-600); --ring-shadow: var(--red-800); }
+
+
+.results-board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.results-pick {
+  text-align: center;
+}
+
+.pick-label {
+  color: var(--white);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.result-circle-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.result-glow {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 70%);
+  z-index: -1;
+}
+
+.result-circle {
+  position: static;
+  width: 140px;
+  height: 140px;
+}
+
+.result-circle.winner {
+  box-shadow: inset 0 -8px 0 var(--ring-shadow), 0 0 0 12px rgba(255, 255, 255, 0.05),
+    0 0 0 24px rgba(255, 255, 255, 0.035), 0 0 0 40px rgba(255, 255, 255, 0.02);
+}
+
+.results-outcome {
+  text-align: center;
+  min-width: 140px;
+}
+
+.outcome-text {
+  color: var(--white);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.play-again-btn {
+  background: var(--white);
+  color: var(--navy-900);
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.play-again-btn:hover {
+  color: var(--red-600);
+}
+
+/* ---------- Rules button ---------- */
+.rules-btn {
+  display: block;
+  margin: 0 auto;
+  border: 2px solid hsl(217, 16%, 45%);
+  color: var(--white);
+  padding: 10px 32px;
+  border-radius: 8px;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.rules-btn:hover {
+  border-color: var(--white);
+}
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 28px 32px 36px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.modal-header h2 {
+  color: var(--navy-900);
+  letter-spacing: 1px;
+  font-size: 1.7rem;
+}
+
+.modal-close img {
+  width: 18px;
+}
+
+.modal-image {
+  width: 100%;
+  max-width: 320px;
+  margin: 16px auto 0;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+
+@media (min-width: 700px) {
+  body {
+    align-items: center;
+    padding: 40px;
+  }
+
+  main {
+    max-width: 700px;
+  }
+
+  .header {
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 90px;
+  }
+
+  .logo {
+    width: 130px;
+  }
+
+  .score-box {
+    padding: 12px 34px 16px;
+  }
+
+  .score-value {
+    font-size: 3rem;
+  }
+
+  .game-board {
+    width: 220px;
+    height: 190px;
+  }
+
+  .choice-btn {
+    width: 100px;
+    height: 100px;
+  }
+
+  .results-board {
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+
+  .result-circle-wrap,
+  .result-circle {
+    width: 130px;
+    height: 160px;
+  }
+
+  .outcome-text {
+    font-size: 3rem;
+  }
+
+  .rules-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    margin: 0;
+  }
+}
