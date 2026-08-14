@@ -1,40 +1,84 @@
-(function () {
-  "use strict";
-
-
-  const state = {
-    step: 1,
-    billing: "monthly", 
-    plan: null,
-    addons: new Set(),
-  };
-
-  const PLAN_NAMES = { arcade: "Arcade", advanced: "Advanced", pro: "Pro" };
-  const ADDON_NAMES = {
-    online: "Online service",
-    storage: "Larger storage",
-    profile: "Customizable profile",
-  };
-
-
-  const stepSections = document.querySelectorAll(".step");
-  const stepListItems = document.querySelectorAll(".steps__item");
-
-  const backBtn = document.getElementById("backBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const confirmBtn = document.getElementById("confirmBtn");
-  const form = document.getElementById("msForm");
-
-  const nameInput = document.getElementById("name");
-  const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("phone");
-
-  const planCards = document.querySelectorAll(".plan-card");
-  const planError = document.getElementById("planError");
-  const billingSwitch = document.getElementById("billingSwitch");
-
-  const addonCards = document.querySelectorAll(".addon-card");
-
-  const changePlanBtn = document.getElementById("changePlanBtn");
+let currentStep = 0
+let formData = {
+	plan: "arcade",
+	amount: 9,
+	option: "monthly",
+	addOns: [],
 }
-)
+const subscriptions = [
+	{
+		id: 1,
+		name: "Online Service",
+		amount: 1,
+	},
+	{
+		id: 2,
+		name: "Larger storage",
+		amount: 2,
+	},
+	{
+		id: 3,
+		name: "Customizable profile",
+		amount: 2,
+	},
+]
+
+const nextBtn = document.getElementById("nextBtn")
+const prevBtn = document.getElementById("backBtn")
+
+const stepItems = document.querySelectorAll(".steps__item")
+const items = document.querySelectorAll(".step")
+
+nextBtn.addEventListener("click", nextBtnClicked)
+prevBtn.addEventListener("click", prevBtnClicked)
+
+function nextBtnClicked(event) {
+	for (let index = 0; index < stepItems.length - 1; index++) {
+		const item = items[index]
+		const stepItem = stepItems[index]
+		if (index == currentStep) {
+			currentStep++
+			stepItem.classList.remove("active")
+			stepItem.ariaHidden = true
+			item.classList.remove("active")
+			item.ariaHidden = true
+			stepItems[currentStep].classList.add("active")
+			stepItems[currentStep].ariaHidden = false
+			items[currentStep].classList.add("active")
+			items[currentStep].ariaHidden = false
+			if (prevBtn.classList.contains("hidden")) {
+				prevBtn.classList.remove("hidden")
+			}
+			if (currentStep == stepItems.length - 1) {
+				nextBtn.innerHTML = "Confirm"
+			}
+			break
+		}
+	}
+}
+
+function prevBtnClicked(event) {
+	for (let index = stepItems.length - 1; index >= 0; index--) {
+		const item = items[index]
+		const stepItem = stepItems[index]
+		if (index == currentStep) {
+			if (currentStep == stepItems.length - 1) {
+				nextBtn.innerHTML = "Next Step"
+			}
+			currentStep--
+			stepItem.classList.remove("active")
+			stepItem.ariaHidden = true
+			item.classList.remove("active")
+			item.ariaHidden = true
+			stepItems[currentStep].classList.add("active")
+			stepItems[currentStep].ariaHidden = false
+			items[currentStep].classList.add("active")
+			items[currentStep].ariaHidden = false
+			if (currentStep == 0) {
+				prevBtn.classList.add("hidden")
+			}
+
+			break
+		}
+	}
+}
